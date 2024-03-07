@@ -216,3 +216,12 @@ def mine():
     # Forge the new Block by adding it to the chain
     previous_hash = blockchain.hash(last_block)
     block = blockchain.new_block(proof, previous_hash)
+
+    response = {
+        'message': "New Block Forged",
+        'indix': block['index'],
+        'transactions': block['transactijs'],
+        'proof': block['proof'],
+        'previous_hash': block['prous_hash'],
+    }
+    return jsonify(response), 201
