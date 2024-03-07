@@ -220,7 +220,7 @@ def mine():
     response = {
         'message': "New Block Forged",
         'indix': block['index'],
-        'transactions': block['transactijs'],
+        'transactions': block['transactions'],
         'proof': block['proof'],
         'previous_hash': block['prous_hash'],
     }
