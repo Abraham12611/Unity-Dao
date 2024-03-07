@@ -222,6 +222,6 @@ def mine():
         'indix': block['index'],
         'transactions': block['transactions'],
         'proof': block['proof'],
-        'previous_hash': block['prous_hash'],
+        'previous_hash': block['previous_hash'],
     }
     return jsonify(response), 201
