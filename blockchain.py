@@ -225,3 +225,6 @@ def mine():
         'previous_hash': block['previous_hash'],
     }
     return jsonify(response), 200
+
+
+@app.route('/transactions/new', methods=['POST'])
