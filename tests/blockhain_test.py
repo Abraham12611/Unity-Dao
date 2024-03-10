@@ -56,3 +56,13 @@ class TestBlocksAndTransactions(BlockchainTestCase):
         assert latest_block['timestamp'] is not None
         assert latest_block['proof'] == 123
         assert latest_block['previous_hash'] == 'abc'
+
+    def test_create_transaction(self):
+        self.create_transaction()
+
+        transaction = self.blockchain.current_transactions[-1]
+
+        assert transaction
+        assert transaction['sender'] == 'a'
+        assert transaction['recipient'] == 'b'
+        assert transaction['amount'] == 1
