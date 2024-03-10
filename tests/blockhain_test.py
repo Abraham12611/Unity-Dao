@@ -78,3 +78,11 @@ class TestBlocksAndTransactions(BlockchainTestCase):
 
         assert initial_length == 1
         assert current_length == 0
+
+    def test_return_last_block(self):
+        self.create_block()
+
+        created_block = self.blockchain.last_block
+
+        assert len(self.blockchain.chain) == 2
+        assert created_block is self.blockchain.chain[-1]
