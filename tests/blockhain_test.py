@@ -18,3 +18,19 @@ class BlockchainTestCase(TestCase):
             recipient=recipient,
             amount=amount
         )
+
+class TestRegisterNodes(BlockchainTestCase):
+
+    def test_valid_nodes(self):
+        blockchain = Blockchain()
+
+        blockchain.register_node('http://192.168.0.1:5000')
+
+        self.assertIn('192.168.0.1:5000', blockchain.nodes)
+
+    def test_malformed_nodes(self):
+        blockchain = Blockchain()
+
+        blockchain.register_node('http//192.168.0.1:5000')
+
+        self.assertNotIn('192.168.0.1:5000', blockchain.nodes)
