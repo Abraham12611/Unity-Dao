@@ -47,3 +47,20 @@ namespace BlockChainDemo
                         case "/chain":
                             return chain.GetFullChain();
 
+                         //POST: http://localhost:12345/nodes/register
+                        //{ "Urls": ["localhost:54321", "localhost:54345", "localhost:12321"] }
+                        case "/nodes/register":
+                            if (request.HttpMethod != HttpMethod.Post.Method)
+                                return $"{new HttpResponseMessage(HttpStatusCode.MethodNotAllowed)}";
+
+                            json = new StreamReader(request.InputStream).ReadToEnd();
+                            var urlList = new { Urls = new string[0] };
+                            var obj = JsonConvert.DeserializeAnonymousType(json, urlList);
+                            return chain.RegisterNodes(obj.Urls);
+
+                        //GET: http://localhost:12345/nodes/resolve
+                        case "/nodes/resolve":
+                            return chain.Consensus();
+                    }
+
+
