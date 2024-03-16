@@ -18,3 +18,16 @@ namespace BlockChainDemo
         private Block _lastBlock => _chain.Last();
 
         public string NodeId { get; private set; }
+
+         //ctor
+        public BlockChain()
+        {
+            NodeId = Guid.NewGuid().ToString().Replace("-", "");
+            CreateNewBlock(proof: 100, previousHash: "1"); //genesis block
+        }
+
+        //private functionality
+        private void RegisterNode(string address)
+        {
+            _nodes.Add(new Node { Address = new Uri(address) });
+        }
