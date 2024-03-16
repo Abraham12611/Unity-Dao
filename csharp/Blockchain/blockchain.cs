@@ -31,3 +31,15 @@ namespace BlockChainDemo
         {
             _nodes.Add(new Node { Address = new Uri(address) });
         }
+
+               private bool IsValidChain(List<Block> chain)
+        {
+            Block block = null;
+            Block lastBlock = chain.First();
+            int currentIndex = 1;
+            while (currentIndex < chain.Count)
+            {
+                block = chain.ElementAt(currentIndex);
+                Debug.WriteLine($"{lastBlock}");
+                Debug.WriteLine($"{block}");
+                Debug.WriteLine("----------------------------");
