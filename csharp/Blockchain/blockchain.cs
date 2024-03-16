@@ -59,3 +59,24 @@ namespace BlockChainDemo
             return true;
         }
 
+         private bool ResolveConflicts()
+        {
+            List<Block> newChain = null;
+            int maxLength = _chain.Count;
+
+            foreach (Node node in _nodes)
+            {
+                var url = new Uri(node.Address, "/chain");
+                var request = (HttpWebRequest)WebRequest.Create(url);
+                var response = (HttpWebResponse)request.GetResponse();
+
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    var model = new
+                    {
+                        chain = new List<Block>(),
+                        length = 0
+                    };
+                    string json = new StreamReader(response.GetResponseStream()).ReadToEnd();
+                    var data = JsonConvert.DeserializeAnonymousType(json, model);
+
