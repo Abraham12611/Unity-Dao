@@ -80,3 +80,21 @@ namespace BlockChainDemo
                     string json = new StreamReader(response.GetResponseStream()).ReadToEnd();
                     var data = JsonConvert.DeserializeAnonymousType(json, model);
 
+                     if (data.chain.Count > _chain.Count && IsValidChain(data.chain))
+                    {
+                        maxLength = data.chain.Count;
+                        newChain = data.chain;
+                    }
+                }
+            }
+
+            if (newChain != null)
+            {
+                _chain = newChain;
+                return true;
+            }
+
+            return false;
+        }
+
+
