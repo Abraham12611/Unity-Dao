@@ -97,4 +97,19 @@ namespace BlockChainDemo
             return false;
         }
 
+        private Block CreateNewBlock(int proof, string previousHash = null)
+        {
+            var block = new Block
+            {
+                Index = _chain.Count,
+                Timestamp = DateTime.UtcNow,
+                Transactions = _currentTransactions.ToList(),
+                Proof = proof,
+                PreviousHash = previousHash ?? GetHash(_chain.Last())
+            };
+
+            _currentTransactions.Clear();
+            _chain.Add(block);
+            return block;
+        }
 
