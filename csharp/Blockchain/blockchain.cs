@@ -129,3 +129,10 @@ namespace BlockChainDemo
             return result.StartsWith("0000");
         }
 
+        private string GetHash(Block block)
+        {
+            string blockText = JsonConvert.SerializeObject(block);
+            return GetSha256(blockText);
+        }
+
+
