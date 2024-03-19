@@ -135,4 +135,11 @@ namespace BlockChainDemo
             return GetSha256(blockText);
         }
 
+        private string GetSha256(string data)
+        {
+            var sha256 = new SHA256Managed();
+            var hashBuilder = new StringBuilder();
+
+            byte[] bytes = Encoding.Unicode.GetBytes(data);
+            byte[] hash = sha256.ComputeHash(bytes);
 
