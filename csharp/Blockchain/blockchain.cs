@@ -143,3 +143,9 @@ namespace BlockChainDemo
             byte[] bytes = Encoding.Unicode.GetBytes(data);
             byte[] hash = sha256.ComputeHash(bytes);
 
+             foreach (byte x in hash)
+                hashBuilder.Append($"{x:x2}");
+
+            return hashBuilder.ToString();
+        }
+
