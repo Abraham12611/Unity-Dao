@@ -210,3 +210,18 @@ namespace BlockChainDemo
             return JsonConvert.SerializeObject(response);
         }
 
+         internal int CreateTransaction(string sender, string recipient, int amount)
+        {
+            var transaction = new Transaction
+            {
+                Sender = sender,
+                Recipient = recipient,
+                Amount = amount
+            };
+
+            _currentTransactions.Add(transaction);
+
+            return _lastBlock != null ? _lastBlock.Index + 1 : 0;
+        }
+    }
+}
