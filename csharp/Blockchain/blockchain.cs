@@ -196,3 +196,17 @@ namespace BlockChainDemo
             return result.Substring(0, result.Length - 2);
         }
 
+        internal string Consensus()
+        {
+            bool replaced = ResolveConflicts();
+            string message = replaced ? "was replaced" : "is authoritive";
+            
+            var response = new
+            {
+                Message = $"Our chain {message}",
+                Chain = _chain
+            };
+
+            return JsonConvert.SerializeObject(response);
+        }
+
