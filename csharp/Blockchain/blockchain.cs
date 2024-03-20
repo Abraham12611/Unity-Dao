@@ -166,3 +166,20 @@ namespace BlockChainDemo
                 PreviousHash = block.PreviousHash
             };
 
+            return JsonConvert.SerializeObject(response);
+        }
+
+        internal string GetFullChain()
+        {
+            var response = new
+            {
+                chain = _chain.ToArray(),
+                length = _chain.Count
+            };
+
+            return JsonConvert.SerializeObject(response);
+        }
+
+        internal string RegisterNodes(string[] nodes)
+        {
+
