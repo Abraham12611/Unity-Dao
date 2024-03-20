@@ -157,3 +157,12 @@ namespace BlockChainDemo
             CreateTransaction(sender: "0", recipient: NodeId, amount: 1);
             Block block = CreateNewBlock(proof /*, _lastBlock.PreviousHash*/);
 
+             var response = new
+            {
+                Message = "New Block Forged",
+                Index = block.Index,
+                Transactions = block.Transactions.ToArray(),
+                Proof = block.Proof,
+                PreviousHash = block.PreviousHash
+            };
+
