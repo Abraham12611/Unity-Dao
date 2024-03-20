@@ -183,3 +183,16 @@ namespace BlockChainDemo
         internal string RegisterNodes(string[] nodes)
         {
 
+            var builder = new StringBuilder();
+            foreach (string node in nodes)
+            {
+                string url = $"http://{node}";
+                RegisterNode(url);
+                builder.Append($"{url}, ");
+            }
+
+            builder.Insert(0, $"{nodes.Count()} new nodes have been added: ");
+            string result = builder.ToString();
+            return result.Substring(0, result.Length - 2);
+        }
+
