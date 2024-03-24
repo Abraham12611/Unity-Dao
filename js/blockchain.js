@@ -7,3 +7,10 @@ class Blockchain {
         this.newBlock();
         this.peers = new Set();
     }
+
+     /**
+     * Adds a node to our peer table
+     */
+     addPeer(host) {
+        this.peers.add(host);
+    }
