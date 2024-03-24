@@ -14,3 +14,10 @@ class Blockchain {
      addPeer(host) {
         this.peers.add(host);
     }
+
+     /**
+     * Adds a node to our peer table
+     */
+     getPeers() {
+        return Array.from(this.peers);
+    }
